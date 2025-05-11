@@ -27,12 +27,12 @@ end
 -- Add buttons for setting agencies
 function AddAgencyItems(menu)
     local agencies = {
-        {label = "CPD", command = "set_codeplug cpd", color = "~b~"},
-        {label = "OSP", command = "set_codeplug osp", color = "~b~"},
-        {label = "ODOT", command = "set_codeplug odot", color = "~o~"},
-        {label = "CFD", command = "set_codeplug fire", color = "~r~"},
-        {label = "HCSO", command = "set_codeplug sheriff", color = "~y~"},
-        {label = "EMS", command = "set_codeplug ems", color = "~g~"}
+        {label = "PD", command = "set_codeplug PD", color = "~b~"},
+        {label = "HP", command = "set_codeplug HP", color = "~b~"},
+        {label = "DOT", command = "set_codeplug DOT", color = "~o~"},
+        {label = "FD", command = "set_codeplug FD", color = "~r~"},
+        {label = "SO", command = "set_codeplug SO", color = "~y~"},
+        {label = "EMS", command = "set_codeplug EMS", color = "~g~"}
     }
 
     for _, agency in ipairs(agencies) do
