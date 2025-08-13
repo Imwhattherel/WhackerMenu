@@ -1,17 +1,17 @@
 _menuPool = NativeUI.CreatePool()
 mainMenu = NativeUI.CreateMenu("Agency Menu", "~h~Set your radio agency", 720, 100)
 _menuPool:Add(mainMenu)
-_menuPool:MouseControlsEnabled(false) -- Disable cursor
+_menuPool:MouseControlsEnabled(false)
 _menuPool:MouseEdgeEnabled(false)
 _menuPool:ControlDisablingEnabled(false)
 
 -- Function to generate a random radio ID
 function generateRadioID()
     local randomDigits = math.random(10000, 99999) -- Generate random 5 digits
-    return "31" .. tostring(randomDigits) -- Prefix with "31"
+    return "25" .. tostring(randomDigits) -- Prefix with "25"
 end
 
--- Add the "Set Radio ID" button
+
 function SetRadioIDItem(menu)
     local radioIDItem = NativeUI.CreateItem("Set Radio ID", "Generate and set a new Radio ID.")
     radioIDItem.Activated = function(sender, item)
@@ -24,16 +24,30 @@ function SetRadioIDItem(menu)
     menu:AddItem(radioIDItem)
 end
 
--- Add buttons for setting agencies
+
 function AddAgencyItems(menu)
     local agencies = {
-        {label = "PD", command = "set_codeplug PD", color = "~b~"},
-        {label = "HP", command = "set_codeplug HP", color = "~b~"},
-        {label = "DOT", command = "set_codeplug DOT", color = "~o~"},
-        {label = "FD", command = "set_codeplug FD", color = "~r~"},
-        {label = "SO", command = "set_codeplug SO", color = "~y~"},
-        {label = "EMS", command = "set_codeplug EMS", color = "~g~"}
+        {label = "XTS5000",      command = "set_codeplug XTS5000",      color = "~b~"},
+        {label = "XTL2500",      command = "set_codeplug XTL2500",      color = "~b~"},
+        {label = "UNIG5",        command = "set_codeplug UNIG5",        color = "~b~"},
+        {label = "SRX2200",      command = "set_codeplug SRX2200",      color = "~o~"},
+        {label = "E5",           command = "set_codeplug E5",           color = "~r~"},
+        {label = "APXNextXE",    command = "set_codeplug APXNextXE",    color = "~y~"},
+        {label = "APXNext",      command = "set_codeplug APXNext",      color = "~g~"},
+        {label = "APXNext-T",    command = "set_codeplug APXNext-T",    color = "~b~"},
+        {label = "APXN70",       command = "set_codeplug APXN70",       color = "~o~"},
+        {label = "APX900",       command = "set_codeplug APX900",       color = "~r~"},
+        {label = "APX8000XE",    command = "set_codeplug APX8000XE",    color = "~y~"},
+        {label = "APX7000",      command = "set_codeplug APX7000",      color = "~g~"},
+        {label = "APX6000XE",    command = "set_codeplug APX6000XE",    color = "~b~"},
+        {label = "APX6000",      command = "set_codeplug APX6000",      color = "~o~"},
+        {label = "APX4500",      command = "set_codeplug APX4500",      color = "~r~"},
+        {label = "APX4500-G",    command = "set_codeplug APX4500-G",    color = "~y~"},
+        {label = "FD",           command = "set_codeplug FD",           color = "~g~"},
+        {label = "PD",           command = "set_codeplug PD",           color = "~b~"}
     }
+
+
 
     for _, agency in ipairs(agencies) do
         local agencyItem = NativeUI.CreateItem("" .. agency.color .. agency.label, "Set agency to " .. agency.label)
@@ -47,24 +61,24 @@ function AddAgencyItems(menu)
     end
 end
 
--- Add the "Credits" button
+
 function AddCreditsItem(menu)
     local creditsItem = NativeUI.CreateItem("Credits", "Contact me via Discord @ whattherel")
     menu:AddItem(creditsItem)
 end
 
--- Add all items to the main menu
-AddAgencyItems(mainMenu)   -- Add agency buttons
-SetRadioIDItem(mainMenu)   -- Add the "Set Radio ID" button
-AddCreditsItem(mainMenu)   -- Add the credits button
+
+AddAgencyItems(mainMenu)   
+SetRadioIDItem(mainMenu)   
+AddCreditsItem(mainMenu)   
 _menuPool:RefreshIndex()
 
--- Command to open the menu
+
 RegisterCommand("codeplug", function()
     mainMenu:Visible(not mainMenu:Visible())
 end, false)
 
--- Process the menu
+
 Citizen.CreateThread(function()
     while true do
         Citizen.Wait(0)
@@ -72,14 +86,14 @@ Citizen.CreateThread(function()
     end
 end)
 
--- Notification function
+
 function notify(text)
     BeginTextCommandThefeedPost("STRING")
     AddTextComponentSubstringPlayerName(text)
     EndTextCommandThefeedPostTicker(false, true)
 end
 
--- Display startup message in the console
+
 function displayStartupMessage()
     print('============================================================')
     print('==                                                        ==')
@@ -89,5 +103,5 @@ function displayStartupMessage()
     print('============================================================')
 end
 
--- Show the startup message
+
 displayStartupMessage()
